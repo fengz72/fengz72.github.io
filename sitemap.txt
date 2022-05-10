@@ -1,2 +1,2 @@
-http://fengz72.github.io/2022/05/10/hello-world/
-http://fengz72.github.io/
+https://example.com/2022/05/10/hello-world/
+https://example.com/
