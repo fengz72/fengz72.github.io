@@ -1,2 +1,2 @@
-https://example.com/2022/05/10/hello-world/
-https://example.com/
+http://fengz72.github.io/2022/05/10/hello-world/
+http://fengz72.github.io/
