@@ -6,7 +6,7 @@
   <link href="http://fengz72.github.io/atom.xml" rel="self"/>
   
   <link href="http://fengz72.github.io/"/>
-  <updated>2022-05-10T08:36:25.567Z</updated>
+  <updated>2022-05-24T09:23:27.839Z</updated>
   <id>http://fengz72.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git</title>
+    <link href="http://fengz72.github.io/2022/05/24/git/"/>
+    <id>http://fengz72.github.io/2022/05/24/git/</id>
+    <published>2022-05-24T09:22:09.000Z</published>
+    <updated>2022-05-24T09:23:27.839Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p><code>git add</code></p><p><code>git commit -m &quot;&quot;</code></p><p><code>git log --pretty=onelin</code>查看提交历史，一行</p><p><code>git reset --hard HEAD^</code>回退上一次提交</p><p><code>git reset --hard [版本号]</code>回退到指定的版本号</p><p><code>git reflog</code>查看历史指令</p><p><code>git status</code>查看当前状态</p><p><code>git diff HEAD -- [filename]</code>查看工作区与版本库里文件的区别</p><p>撤销工作区的内容（未提交到stage）</p><p><code>git restore [filename]</code></p><p>撤销暂存区的内容（已提交到stage，git add），此时修改会回到工作区，变为未modified</p><p><code>git restore --staged [filename]</code></p><p>从版本库删除一个文件</p><p><code>git rm [filename]</code></p><p><code>git commit -m &quot;rm [filename]&quot;</code></p><p>误删一个文件，从版本库里面恢复</p><p><code>git checkout [filename]</code></p><h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p><code>git remote add origin git@github.com:fengz72/git_test.git</code>将远程仓库和本地仓库关联</p><p><code>git push -u origin master</code>把master分支推到远程库，<code>-u</code>会将本地<code>master</code>分支和远程<code>master</code>分支关联起来</p><p><code>git push origin master</code></p><p>本地分支与远程仓库分支绑定</p><p><code>git switch -c dev origin/dev</code>在本地创建和远程分支对应的分支</p><p><code>git pull</code>提示no tracking information，需要绑定</p><p><code>git branch --set-upstream-to=origin/dev dev</code> 与远程仓库绑定 Branch ‘dev’ set up to track remote branch ‘dev’ from ‘origin’.</p><p>删除远程库</p><p><code>git remote -v</code>查看远程库信息</p><p><code>git remote rm origin</code>删除远程库</p><p><code>git clone</code></p><h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p><code>git checkout -b dev</code>创建并切换到dev分支上，相当于以下两条指令<code>git branch dev</code>，<code>git checkout dev</code></p><p><code>git branch</code>查看当前分支</p><p><code>git switch [分支名]</code>，<code>git checkout [分支名]</code>切换分支</p><p><code>git switch -c [分支名]</code>切换+创建分支</p><p><code>git merge dev</code>把指定分支合并到当前分支</p><p><code>git branch -d dev</code>删除分支</p><p><code>git branch -D feature-vulcan</code>强制删除未合并的分支</p><p>冲突（conflicts）</p><p>解决冲突，再提交，就会自动合并</p><p><code>git log --graph</code>可以看到分支合并图</p><p><code>git log --graph --pretty=oneline</code>一行</p><p><code>git log --graph --pretty=oneline --abbrev-commit</code>提交的地址缩短</p><p>merge是把目标分支的改动也加到当前分支，而当前分支自己的改动不一定在目标分支。</p><p>禁用<code>Fast forward</code></p><p><code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></p><p>临时存储工作内容</p><p><code>git stash</code></p><p><code>git stash list</code>查看存储了哪一些</p><p><code>git stash pop</code>恢复并删除记录，等价于<code>git stash apply</code> + <code>git stash drop</code></p><p><code>git stash apply stash@&#123;0&#125;</code>恢复指定内容</p><p> <code>git cherry-pick 7ca26e1</code>把bug提交的修改复制到当前分支</p><p><code>git rebase</code>合并分支，一条直线</p><h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><p><code>git tag v1.0</code>打标签</p><p><code>git tag v0.9 053427</code>对commit打标签</p><p><code>git tag -a v0.1 -m &quot;version 0.1 released&quot; 92e2e3</code>带有说明的标签 <code>-a</code>指定标签名，<code>-m</code>指定说明文字</p><p><code>git tag</code>查看已有标签</p><p><code>git show v1.0</code>查看标签的详细信息</p><p><code>git tag -d v0.9</code>删除标签</p><p><code>git push origin :refs/tags/&lt;tagname&gt;</code>需要先删除本地标签，再删除远程标签</p><p><code>git push origin [tagname]</code>推送本地标签</p><p><code>git push origin --tags</code>推送全部未推送过的本地标签</p><h2 id="命令别名"><a href="#命令别名" class="headerlink" title="命令别名"></a>命令别名</h2><p><a href="https://www.liaoxuefeng.com/wiki/896043488029600/898732837407424">命令别名</a></p><p><code>git config --global alias.lg &quot;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</code></p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>warning: LF will be replaced by CRLF in vulcan.py.<br>The file will have its original line endings in your working directory</p><p><a href="https://blog.csdn.net/wq6ylg08/article/details/88761581">https://blog.csdn.net/wq6ylg08/article/details/88761581</a></p><p>LF and CRLF</p><p><code>git config core.autocrlf</code>查询设置</p><p><code>git config --global core.autocrlf true</code>设置为true</p><ul><li><p>在<strong>“把modified修改过的文件git add到暂存区stage”</strong>时，Git自动把<strong>LF转换成CRLF</strong>，并给出那条警告”LF will be replaced by CRLF”</p></li><li><p>在<strong>“把modified修改过的文件由暂存区(stage) 提交(commit)到版本库/仓库(repository)”</strong>时，Git自动把<strong>CRLF转换成LF</strong></p></li><li><p>在<strong>“用 检出/git checkout切换到指定分支 或 git clone克隆远程版本库”</strong>来加载代码时，Git自动把<strong>LF转换成CRLF</strong></p></li></ul><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol><li><a href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰git教程</a></li><li><a href="https://git-scm.com/book/zh/v2">官方教程</a></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h1&gt;&lt;p&gt;&lt;code&gt;git add&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git commit -m &amp;quot;&amp;quot;&lt;/code</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
