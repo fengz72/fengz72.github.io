@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>yes and no!</title>
+  <title>fengz</title>
   
   
   <link href="http://fengz72.github.io/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://fengz72.github.io/</id>
   
   <author>
-    <name>hejun</name>
+    <name>何俊</name>
     
   </author>
   
