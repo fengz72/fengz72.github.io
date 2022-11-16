@@ -47,6 +47,13 @@
 
   
   <url>
+    <loc>http://he-jun.top/tags/git/</loc>
+    <lastmod>2022-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://he-jun.top/tags/session/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -60,24 +67,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>http://he-jun.top/tags/git/</loc>
-    <lastmod>2022-11-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>http://he-jun.top/categories/spring/</loc>
+    <loc>http://he-jun.top/categories/tools/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://he-jun.top/categories/tools/</loc>
+    <loc>http://he-jun.top/categories/spring/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
