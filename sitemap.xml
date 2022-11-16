@@ -4,7 +4,16 @@
   <url>
     <loc>http://fengz72.github.io/2022/05/24/git/</loc>
     
-    <lastmod>2022-05-24</lastmod>
+    <lastmod>2022-11-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://fengz72.github.io/2022/11/16/%E6%8E%A7%E5%88%B6%E5%99%A8%E6%96%B9%E6%B3%95%E5%BE%97%E5%88%B0%E5%BD%A2%E5%8F%82%E7%9A%84session/</loc>
+    
+    <lastmod>2022-11-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -28,24 +37,50 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>http://fengz72.github.io/2022/05/10/hello-world/</loc>
-    
-    <lastmod>2022-05-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>http://fengz72.github.io/</loc>
-    <lastmod>2022-05-27</lastmod>
+    <lastmod>2022-11-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
+  <url>
+    <loc>http://fengz72.github.io/tags/session/</loc>
+    <lastmod>2022-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://fengz72.github.io/tags/springBoot/</loc>
+    <lastmod>2022-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://fengz72.github.io/tags/git/</loc>
+    <lastmod>2022-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
+  
+  <url>
+    <loc>http://fengz72.github.io/categories/spring/</loc>
+    <lastmod>2022-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://fengz72.github.io/categories/tools/</loc>
+    <lastmod>2022-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
