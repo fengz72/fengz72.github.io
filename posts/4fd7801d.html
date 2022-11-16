@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-h.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-h.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-h.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab-h.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"he-jun.top","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="springBoot中如何得到形参? 1234@GetMapping(&quot;&#x2F;test&quot;)  public String test(HttpSession session)&amp;#123;      return &quot;login&quot;;  &amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="控制器方法得到形参的session">
+<meta property="og:url" content="https://he-jun.top/posts/4fd7801d.html">
+<meta property="og:site_name" content="网络随想录">
+<meta property="og:description" content="springBoot中如何得到形参? 1234@GetMapping(&quot;&#x2F;test&quot;)  public String test(HttpSession session)&amp;#123;      return &quot;login&quot;;  &amp;#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pan.he-jun.top/img/87793f202c9c7fbfe32bcd162624dc11.png">
+<meta property="og:image" content="https://pan.he-jun.top/img/9e02d2e26deeea4e198e2c640ad9717f.png">
+<meta property="og:image" content="https://pan.he-jun.top/img/cc8d2e7e233aec046c38be5c11d90e9a.png">
+<meta property="og:image" content="https://pan.he-jun.top/img/c769cc6d34e1b24d6e68b7a14741a9f6.png">
+<meta property="og:image" content="https://pan.he-jun.top/img/40f002b3a86ef3c622b978b1a9f75a90.png">
+<meta property="og:image" content="https://pan.he-jun.top/img/eccca7ae571152d1d63d0d2de668142e.png">
+<meta property="article:published_time" content="2022-11-16T06:23:47.000Z">
+<meta property="article:modified_time" content="2022-11-16T13:11:06.933Z">
+<meta property="article:author" content="fengz">
+<meta property="article:tag" content="session">
+<meta property="article:tag" content="springBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pan.he-jun.top/img/87793f202c9c7fbfe32bcd162624dc11.png">
+
+
+<link rel="canonical" href="https://he-jun.top/posts/4fd7801d.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://he-jun.top/posts/4fd7801d.html","path":"posts/4fd7801d.html","title":"控制器方法得到形参的session"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>控制器方法得到形参的session | 网络随想录</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="网络随想录" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络随想录</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-photos"><a href="/photos/" rel="section"><i class="fa fa-camera fa-fw"></i>相册</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#doDispatch"><span class="nav-number">1.</span> <span class="nav-text">doDispatch()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6request"><span class="nav-number">1.1.</span> <span class="nav-text">复制request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%97%E5%88%B0handler"><span class="nav-number">1.2.</span> <span class="nav-text">得到handler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%97%E5%88%B0HandlerAdapter"><span class="nav-number">1.3.</span> <span class="nav-text">得到HandlerAdapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">执行方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#handle"><span class="nav-number">2.</span> <span class="nav-text">handle()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#handleInternal"><span class="nav-number">3.</span> <span class="nav-text">handleInternal()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invokeHandlerMethod"><span class="nav-number">4.</span> <span class="nav-text">invokeHandlerMethod()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">参数解析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">4.2.</span> <span class="nav-text">返回值解析器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invokeAndHandle"><span class="nav-number">5.</span> <span class="nav-text">invokeAndHandle()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invokeForRequest"><span class="nav-number">6.</span> <span class="nav-text">invokeForRequest()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getMethodArgumentValues"><span class="nav-number">7.</span> <span class="nav-text">getMethodArgumentValues()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolveArgument"><span class="nav-number">8.</span> <span class="nav-text">resolveArgument()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getArgumentResolver"><span class="nav-number">8.1.</span> <span class="nav-text">getArgumentResolver()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resolveArgument-2"><span class="nav-number">8.2.</span> <span class="nav-text">resolveArgument()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolveArgument-3"><span class="nav-number">9.</span> <span class="nav-text">resolveArgument()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolveArgument-4"><span class="nav-number">10.</span> <span class="nav-text">resolveArgument()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getSession"><span class="nav-number">11.</span> <span class="nav-text">getSession()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getSession-2"><span class="nav-number">11.1.</span> <span class="nav-text">getSession()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#doGetSession"><span class="nav-number">11.2.</span> <span class="nav-text">doGetSession()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">11.3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">11.4.</span> <span class="nav-text">参考文献</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-number">12.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">fengz</p>
+  <div class="site-description" itemprop="description">分享笔记和音乐</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengz72" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengz72" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hejun@outlook.at" title="E-Mail → mailto:hejun@outlook.at" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://he-jun.top/posts/4fd7801d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fengz">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络随想录">
+      <meta itemprop="description" content="分享笔记和音乐">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="控制器方法得到形参的session | 网络随想录">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          控制器方法得到形参的session
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-16 14:23:47 / 修改时间：21:11:06" itemprop="dateCreated datePublished" datetime="2022-11-16T14:23:47+08:00">2022-11-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/spring/" itemprop="url" rel="index"><span itemprop="name">spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>springBoot中如何得到形参?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/test&quot;)</span>  </span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test</span><span class="params">(HttpSession session)</span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;login&quot;</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="doDispatch">doDispatch()</h2>
+<p>在<code>DispatcherServlet</code>类里面</p>
+<h3 id="复制request">复制request</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 复制一份request</span></span><br><span class="line"><span class="type">HttpServletRequest</span> <span class="variable">processedRequest</span> <span class="operator">=</span> request;</span><br></pre></td></tr></table></figure>
+<h3 id="得到handler">得到handler</h3>
+<p><code>mappedHandler = this.getHandler(processedRequest);</code>通过遍历<code>HandlerMappings</code>来获得<code>HandlerExecutionChain</code>(里面封装了handler, 类型为<code>HandlerMethod</code>. handler里面有parameters, 类型为<code>MethodParameter[]</code>, 里面是全部的参数)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  </span><br><span class="line"><span class="keyword">protected</span> HandlerExecutionChain <span class="title function_">getHandler</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.handlerMappings != <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="type">Iterator</span> <span class="variable">var2</span> <span class="operator">=</span> <span class="built_in">this</span>.handlerMappings.iterator();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">while</span>(var2.hasNext()) &#123;  </span><br><span class="line">            <span class="type">HandlerMapping</span> <span class="variable">mapping</span> <span class="operator">=</span> (HandlerMapping)var2.next();  </span><br><span class="line">            <span class="type">HandlerExecutionChain</span> <span class="variable">handler</span> <span class="operator">=</span> mapping.getHandler(request);  </span><br><span class="line">            <span class="keyword">if</span> (handler != <span class="literal">null</span>) &#123;  </span><br><span class="line">                <span class="keyword">return</span> handler;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>HandlerMappings</code>有5个, 这里匹配<code>RequestMappingHandlerMapping</code>.<br>
+<img src="https://pan.he-jun.top/img/87793f202c9c7fbfe32bcd162624dc11.png" alt=""></p>
+<h3 id="得到HandlerAdapter">得到HandlerAdapter</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HandlerAdapter</span> <span class="variable">ha</span> <span class="operator">=</span> <span class="built_in">this</span>.getHandlerAdapter(mappedHandler.getHandler());</span><br></pre></td></tr></table></figure>
+<p>通过遍历<code>handlerAdapters</code>来得到合适的handlerAdapter. <code>HandlerAdapter</code>是一个接口, 里面<code>support()</code>来适配合适的handlerAdapter, <code>handler()</code>执行handler.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> HandlerAdapter <span class="title function_">getHandlerAdapter</span><span class="params">(Object handler)</span> <span class="keyword">throws</span> ServletException &#123;  </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.handlerAdapters != <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="type">Iterator</span> <span class="variable">var2</span> <span class="operator">=</span> <span class="built_in">this</span>.handlerAdapters.iterator();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">while</span>(var2.hasNext()) &#123;  </span><br><span class="line">            <span class="type">HandlerAdapter</span> <span class="variable">adapter</span> <span class="operator">=</span> (HandlerAdapter)var2.next();  </span><br><span class="line">            <span class="keyword">if</span> (adapter.supports(handler)) &#123;  </span><br><span class="line">                <span class="keyword">return</span> adapter;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ServletException</span>(<span class="string">&quot;No adapter for handler [&quot;</span> + handler + <span class="string">&quot;]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler&quot;</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一共有四种, 这里匹配<code>RequestMappingHandlerAdapter</code>.<br>
+<img src="https://pan.he-jun.top/img/9e02d2e26deeea4e198e2c640ad9717f.png" alt=""></p>
+<h3 id="执行方法">执行方法</h3>
+<p>调用handlerAdapter得handler(), 返回modelAndView.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br></pre></td></tr></table></figure>
+<h2 id="handle">handle()</h2>
+<p>在AbstractHandlerMethodAdapter.class里面<br>
+调用<code>handleInternal()</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> ModelAndView <span class="title function_">handle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.handleInternal(request, response, (HandlerMethod)handler);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="handleInternal">handleInternal()</h2>
+<p>在RequestMappingHandlerAdapter.class里面<br>
+调用<code>invokeHandlerMethod()</code>, 返回modelAndView</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> ModelAndView <span class="title function_">handleInternal</span><span class="params">(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)</span> <span class="keyword">throws</span> Exception &#123;   </span><br><span class="line">    ModelAndView mav;  </span><br><span class="line">	mav = <span class="built_in">this</span>.invokeHandlerMethod(request, response, handlerMethod);    </span><br><span class="line">    <span class="keyword">return</span> mav;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="invokeHandlerMethod">invokeHandlerMethod()</h2>
+<p>在RequestMappingHandlerAdapter.class里面<br>
+调用<code>invokeAndHandle()</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  </span><br><span class="line"><span class="keyword">protected</span> ModelAndView <span class="title function_">invokeHandlerMethod</span><span class="params">(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)</span> <span class="keyword">throws</span> Exception &#123;   </span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.argumentResolvers != <span class="literal">null</span>) &#123;  </span><br><span class="line">            invocableMethod.setHandlerMethodArgumentResolvers(<span class="built_in">this</span>.argumentResolvers);  </span><br><span class="line">        &#125;  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.returnValueHandlers != <span class="literal">null</span>) &#123;  </span><br><span class="line">            invocableMethod.setHandlerMethodReturnValueHandlers(<span class="built_in">this</span>.returnValueHandlers);  </span><br><span class="line">        &#125;   </span><br><span class="line">        invocableMethod.invokeAndHandle(webRequest, mavContainer, <span class="keyword">new</span> <span class="title class_">Object</span>[<span class="number">0</span>]);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="参数解析器">参数解析器</h3>
+<p>这里的<code>argumentResolvers</code>为参数解析器</p>
+<ul>
+<li>里面封装一个名为<code>argumentResolvers</code>得ArrayList, 决定形参能填写的种类, 共有27种.</li>
+<li>还有一个名为<code>argumentResolverCache</code>的ConcurrentHashMap, 存放匹配过的缓存.</li>
+</ul>
+<p><img src="https://pan.he-jun.top/img/cc8d2e7e233aec046c38be5c11d90e9a.png" alt=""></p>
+<h3 id="返回值解析器">返回值解析器</h3>
+<p><code>returnValueHandlers</code>为返回解析器, 共有15种.<br>
+<img src="https://pan.he-jun.top/img/c769cc6d34e1b24d6e68b7a14741a9f6.png" alt=""></p>
+<h2 id="invokeAndHandle">invokeAndHandle()</h2>
+<p>在ServletInvocableHandlerMethod.class里面<br>
+调用<code>invokeForRequest()</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">invokeAndHandle</span><span class="params">(ServletWebRequest webRequest, ModelAndViewContainer mavContainer, Object... providedArgs)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    <span class="type">Object</span> <span class="variable">returnValue</span> <span class="operator">=</span> <span class="built_in">this</span>.invokeForRequest(webRequest, mavContainer, providedArgs);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="invokeForRequest">invokeForRequest()</h2>
+<p>在InvocableHandlerMethod.class里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  </span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">invokeForRequest</span><span class="params">(NativeWebRequest request, <span class="meta">@Nullable</span> ModelAndViewContainer mavContainer, Object... providedArgs)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    Object[] args = <span class="built_in">this</span>.getMethodArgumentValues(request, mavContainer, providedArgs);  </span><br><span class="line">    <span class="keyword">if</span> (logger.isTraceEnabled()) &#123;  </span><br><span class="line">        logger.trace(<span class="string">&quot;Arguments: &quot;</span> + Arrays.toString(args));  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.doInvoke(args);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用<code>getMethodArgumentValues()</code>, 返回参数.<br>
+<code>doInvoke()</code>激活方法.</p>
+<h2 id="getMethodArgumentValues">getMethodArgumentValues()</h2>
+<p>在InvocableHandlerMethod.class里面.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Object[] getMethodArgumentValues(NativeWebRequest request, <span class="meta">@Nullable</span> ModelAndViewContainer mavContainer, Object... providedArgs) <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    MethodParameter[] parameters = <span class="built_in">this</span>.getMethodParameters();   </span><br><span class="line">    Object[] args = <span class="keyword">new</span> <span class="title class_">Object</span>[parameters.length];  </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; parameters.length; ++i) &#123;  </span><br><span class="line">        <span class="type">MethodParameter</span> <span class="variable">parameter</span> <span class="operator">=</span> parameters[i];     </span><br><span class="line">        args[i] = <span class="built_in">this</span>.resolvers.resolveArgument(parameter, mavContainer, request, <span class="built_in">this</span>.dataBinderFactory);   </span><br><span class="line">        <span class="keyword">return</span> args;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>构建一个数组, 长度为参数的个数.<br>
+这里的<code>resolvers</code>是[[C-Code/JAVA/框架/控制器方法得到形参的session#参数解析器]].<br>
+调用<code>resolveArgument()</code>方法.</p>
+<h2 id="resolveArgument">resolveArgument()</h2>
+<p>在HandlerMethodArgumentResolverComposite.class里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  </span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">resolveArgument</span><span class="params">(MethodParameter parameter, <span class="meta">@Nullable</span> ModelAndViewContainer mavContainer, NativeWebRequest webRequest, <span class="meta">@Nullable</span> WebDataBinderFactory binderFactory)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    <span class="type">HandlerMethodArgumentResolver</span> <span class="variable">resolver</span> <span class="operator">=</span> <span class="built_in">this</span>.getArgumentResolver(parameter);  </span><br><span class="line">    <span class="keyword">if</span> (resolver == <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Unsupported parameter type [&quot;</span> + parameter.getParameterType().getName() + <span class="string">&quot;]. supportsParameter should be called first.&quot;</span>);  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="getArgumentResolver">getArgumentResolver()</h3>
+<p>如果缓存里面有匹配的, 就直接返回缓存里面的数据.<br>
+如果缓存里面没有, 在<code>argumentResolvers</code>里面匹配合适的参数解析器, 加入缓存, 再返回.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Nullable</span>  </span><br><span class="line"><span class="keyword">private</span> HandlerMethodArgumentResolver <span class="title function_">getArgumentResolver</span><span class="params">(MethodParameter parameter)</span> &#123;  </span><br><span class="line">    <span class="type">HandlerMethodArgumentResolver</span> <span class="variable">result</span> <span class="operator">=</span> (HandlerMethodArgumentResolver)<span class="built_in">this</span>.argumentResolverCache.get(parameter);  </span><br><span class="line">    <span class="keyword">if</span> (result == <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="type">Iterator</span> <span class="variable">var3</span> <span class="operator">=</span> <span class="built_in">this</span>.argumentResolvers.iterator();  </span><br><span class="line">  </span><br><span class="line">        <span class="keyword">while</span>(var3.hasNext()) &#123;  </span><br><span class="line">            <span class="type">HandlerMethodArgumentResolver</span> <span class="variable">resolver</span> <span class="operator">=</span> (HandlerMethodArgumentResolver)var3.next();  </span><br><span class="line">            <span class="keyword">if</span> (resolver.supportsParameter(parameter)) &#123;  </span><br><span class="line">                result = resolver;  </span><br><span class="line">                <span class="built_in">this</span>.argumentResolverCache.put(parameter, resolver);  </span><br><span class="line">                <span class="keyword">break</span>;            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> result;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缓存中以方法的参数<code>HandlerMethodParameter</code>为key, 以匹配到的参数解析器为value.<br>
+<img src="https://pan.he-jun.top/img/40f002b3a86ef3c622b978b1a9f75a90.png" alt=""></p>
+<p>这里匹配到的参数解析器为<code>ServletRequestMethodArgumentResolver</code>, 说明<code>HttpSession</code>类型的形参由<code>ServletRequestMethodArgumentResolver</code>解析.</p>
+<h3 id="resolveArgument-2">resolveArgument()</h3>
+<p>调用参数解析器里面的<code>resolveArgument()</code>方法</p>
+<h2 id="resolveArgument-3">resolveArgument()</h2>
+<p>在ServletRequestMethodArgumentResolver.class里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">resolveArgument</span><span class="params">(MethodParameter parameter, <span class="meta">@Nullable</span> ModelAndViewContainer mavContainer, NativeWebRequest webRequest, <span class="meta">@Nullable</span> WebDataBinderFactory binderFactory)</span> <span class="keyword">throws</span> Exception &#123;  </span><br><span class="line">    Class&lt;?&gt; paramType = parameter.getParameterType();  </span><br><span class="line">    <span class="keyword">if</span> (WebRequest.class.isAssignableFrom(paramType)) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (!paramType.isInstance(webRequest)) &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Current request is not of type [&quot;</span> + paramType.getName() + <span class="string">&quot;]: &quot;</span> + webRequest);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            <span class="keyword">return</span> webRequest;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> !ServletRequest.class.isAssignableFrom(paramType) &amp;&amp; !MultipartRequest.class.isAssignableFrom(paramType) ? <span class="built_in">this</span>.resolveArgument(paramType, (HttpServletRequest)<span class="built_in">this</span>.resolveNativeRequest(webRequest, HttpServletRequest.class)) : <span class="built_in">this</span>.resolveNativeRequest(webRequest, paramType);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>getParameterType()</code>得到参数的类型, 这里为<code>interface javax.servlet.http.HttpSession</code>.</p>
+<p><code>WebRequest.class.isAssignableFrom(paramType)</code>判断HttpSession是否继承于WebRequest, 这里为否.</p>
+<p><code>!ServletRequest.class.isAssignableFrom(paramType) &amp;&amp; !MultipartRequest.class.isAssignableFrom(paramType)</code>为true, 执行<code>this.resolveArgument(paramType, (HttpServletRequest)this.resolveNativeRequest(webRequest, HttpServletRequest.class))</code>方法.</p>
+<h2 id="resolveArgument-4">resolveArgument()</h2>
+<p>在ServletRequestMethodArgumentResolver.class里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Object <span class="title function_">resolveArgument</span><span class="params">(Class&lt;?&gt; paramType, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException &#123;  </span><br><span class="line">    <span class="keyword">if</span> (HttpSession.class.isAssignableFrom(paramType)) &#123;  </span><br><span class="line">        <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession();  </span><br><span class="line">        <span class="keyword">if</span> (session != <span class="literal">null</span> &amp;&amp; !paramType.isInstance(session)) &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;Current session is not of type [&quot;</span> + paramType.getName() + <span class="string">&quot;]: &quot;</span> + session);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            <span class="keyword">return</span> session;  </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><code>HttpSession session = request.getSession();</code>调用原生的servlet API来获得session.</p>
+<h2 id="getSession">getSession()</h2>
+<p>在RequestFacade.class里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> HttpSession <span class="title function_">getSession</span><span class="params">()</span> &#123;  </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.request == <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(sm.getString(<span class="string">&quot;requestFacade.nullRequest&quot;</span>));  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.getSession(<span class="literal">true</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用重载的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> HttpSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> create)</span> &#123;  </span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.request == <span class="literal">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(sm.getString(<span class="string">&quot;requestFacade.nullRequest&quot;</span>));  </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">        <span class="keyword">return</span> SecurityUtil.isPackageProtectionEnabled() ? (HttpSession)AccessController.doPrivileged(<span class="keyword">new</span> <span class="title class_">GetSessionPrivilegedAction</span>(create)) : <span class="built_in">this</span>.request.getSession(create);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>SecurityUtil.isPackageProtectionEnabled()</code>为false, 调用<code>this.request.getSession(create)</code>.</p>
+<h3 id="getSession-2">getSession()</h3>
+<p>在Request.class里面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> HttpSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> create)</span> &#123;  </span><br><span class="line">    <span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> <span class="built_in">this</span>.doGetSession(create);  </span><br><span class="line">    <span class="type">return</span> <span class="variable">session</span> <span class="operator">=</span>= <span class="literal">null</span> ? <span class="literal">null</span> : session.getSession();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="doGetSession">doGetSession()</h3>
+<p>在Request.class里面<br>
+真正对session处理的方法, 其中最重要的是下面的两个方法.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.session = manager.findSession(<span class="built_in">this</span>.requestedSessionId);</span><br><span class="line"></span><br><span class="line"><span class="built_in">this</span>.session = manager.createSession(sessionId);</span><br></pre></td></tr></table></figure>
+<h3 id="总结">总结</h3>
+<p>以后再分析<code>getSession</code>是怎么实现的.<br>
+<img src="https://pan.he-jun.top/img/eccca7ae571152d1d63d0d2de668142e.png" alt=""></p>
+<h3 id="参考文献">参考文献</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/java-chen-hao/p/10774858.html">博客园-session的应用</a><br>
+<a target="_blank" rel="noopener" href="https://juejin.cn/post/7000570872490622990">掘金-Java Servlet中Session的原理以及使用方式</a><br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/qiu7qiu7/article/details/81194874">csdn-session工作过程</a><br>
+<a target="_blank" rel="noopener" href="http://t.zoukankan.com/ZL0508-p-7309189.html">zoukankan-透过源码看session</a></p>
+<h2 id="总结-2">总结</h2>
+<ul>
+<li><code>HttpSession</code>类型的形参由<code>ServletRequestMethodArgumentResolver</code>解析.</li>
+<li>ServletRequestMethodArgumentResolver.class里面调用原生API<code>request.getSession()</code>来获得session</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/session/" rel="tag"># session</a>
+              <a href="/tags/springBoot/" rel="tag"># springBoot</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/518e617c.html" rel="prev" title="git">
+                  <i class="fa fa-chevron-left"></i> git
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备案2022024637号 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fengz</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/fengz72" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>
