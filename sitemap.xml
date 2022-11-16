@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://fengz72.github.io/2022/05/24/git/</loc>
+    <loc>http://he-jun.top/2022/05/24/git/</loc>
     
     <lastmod>2022-11-16</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://fengz72.github.io/2022/11/16/%E6%8E%A7%E5%88%B6%E5%99%A8%E6%96%B9%E6%B3%95%E5%BE%97%E5%88%B0%E5%BD%A2%E5%8F%82%E7%9A%84session/</loc>
+    <loc>http://he-jun.top/2022/11/16/%E6%8E%A7%E5%88%B6%E5%99%A8%E6%96%B9%E6%B3%95%E5%BE%97%E5%88%B0%E5%BD%A2%E5%8F%82%E7%9A%84session/</loc>
     
     <lastmod>2022-11-16</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>http://fengz72.github.io/categories/index.html</loc>
+    <loc>http://he-jun.top/categories/index.html</loc>
     
     <lastmod>2022-05-10</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>http://fengz72.github.io/tags/index.html</loc>
+    <loc>http://he-jun.top/tags/index.html</loc>
     
     <lastmod>2022-05-10</lastmod>
     
@@ -39,7 +39,7 @@
   
 
   <url>
-    <loc>http://fengz72.github.io/</loc>
+    <loc>http://he-jun.top/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -47,21 +47,21 @@
 
   
   <url>
-    <loc>http://fengz72.github.io/tags/session/</loc>
+    <loc>http://he-jun.top/tags/session/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://fengz72.github.io/tags/springBoot/</loc>
+    <loc>http://he-jun.top/tags/springBoot/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://fengz72.github.io/tags/git/</loc>
+    <loc>http://he-jun.top/tags/git/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -70,14 +70,14 @@
 
   
   <url>
-    <loc>http://fengz72.github.io/categories/spring/</loc>
+    <loc>http://he-jun.top/categories/spring/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://fengz72.github.io/categories/tools/</loc>
+    <loc>http://he-jun.top/categories/tools/</loc>
     <lastmod>2022-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
