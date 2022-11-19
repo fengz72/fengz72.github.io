@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://he-jun.top/posts/46883.html</loc>
+    
+    <lastmod>2022-11-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://he-jun.top/photos/index.html</loc>
     
     <lastmod>2022-11-16</lastmod>
@@ -49,7 +58,7 @@
 
   <url>
     <loc>https://he-jun.top/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <lastmod>2022-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,21 +66,21 @@
   
   <url>
     <loc>https://he-jun.top/tags/git/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <lastmod>2022-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://he-jun.top/tags/session/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <lastmod>2022-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://he-jun.top/tags/springBoot/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <lastmod>2022-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -80,14 +89,21 @@
   
   <url>
     <loc>https://he-jun.top/categories/tools/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <lastmod>2022-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://he-jun.top/categories/spring/</loc>
-    <lastmod>2022-11-16</lastmod>
+    <lastmod>2022-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://he-jun.top/categories/music/</loc>
+    <lastmod>2022-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
